@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.module.category" id="simapas_category">
+            <field name="name">SIMAPAS JAMAY</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="repairs_model_group" model="res.groups">
+            <field name="name">Administrador</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="category_id" ref="simapas.simapas_category"/>
+        </record>
+    </data>
+</odoo>

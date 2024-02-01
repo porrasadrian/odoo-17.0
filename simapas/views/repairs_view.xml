@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="repairs_view_form" model="ir.ui.view">
+        <field name="name">repairs</field>
+        <field name="model">repairs</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Abrir Google Maps" type="object" class="oe_highlight" icon="fa-map"
+                            name="button_open_google_maps"/>
+                    <field name="stage_id" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Archivado" bg-color="bg-red"
+                           invisible="active == True"/>
+                    <h2>
+                        Información de reparaciones
+                    </h2>
+                    <div class="oe_title mb24">
+                        <div class="o_row">
+                            <field name="name_work" placeholder="Escribe el nombre del trabajo"
+                                   style="font-size:28px;"/>
+                        </div>
+                        <div class="o_row">
+                            <field name="end_date_work" placeholder="Fecha de finalizacion"/>
+                        </div>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="active" invisible="1"/>
+                            <field name="coords_x"/>
+                            <field name="coords_y"/>
+                            <field name="start_date"/>
+                            <field name="location"/>
+                            <field name="street_from"/>
+
+                        </group>
+                        <group>
+                            <field name="google_maps_url"/>
+                            <field name="end_date"/>
+                            <field name="municipaly"/>
+                            <field name="street_to"/>
+                        </group>
+                        <field name="details" placeholder="Escribe los detalles del trabajo"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" options="{'open_attachments': True}"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="repairs_view_tree" model="ir.ui.view">
+        <field name="name">repairs</field>
+        <field name="model">repairs</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="stage_id == 'cancel'" decoration-success="stage_id == 'completed'">
+                <field name="name_work"/>
+                <field name="end_date_work"/>
+                <field name="coords_x"/>
+                <field name="coords_y"/>
+                <field name="stage_id" widget="badge" decoration-success="stage_id == 'completed'"
+                       decoration-danger="stage_id == 'cancel'"
+                       decoration-info="stage_id == 'initial'" decoration-warning="stage_id == 'in_progress'"/>
+                <field name="street_from" optional="hidden"/>
+                <field name="street_to" optional="hidden"/>
+                <field name="start_date" optional="hidden"/>
+                <field name="end_date" optional="hidden"/>
+                <field name="location" optional="hidden"/>
+                <field name="municipaly" optional="hidden"/>
+                <field name="details" optional="hidden"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
